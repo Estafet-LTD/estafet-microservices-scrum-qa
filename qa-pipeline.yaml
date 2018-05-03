@@ -16,7 +16,7 @@ spec:
       uri: "https://github.com/Estafet-LTD/estafet-microservices-scrum-qa"
   strategy:
     jenkinsPipelineStrategy:
-      jenkinsfilePath: release-pipeline.groovy
+      jenkinsfilePath: qa-pipeline.groovy
     type: JenkinsPipeline
   triggers:
   - github:
