@@ -8,7 +8,7 @@ node('maven') {
 
 	stage("execute acceptance tests") {
 		sh "mvn clean install"
-		junit "**/target/surefire-reports/*.xml"	
+		//junit "**/target/surefire-reports/*.xml"	
 	}
 
 }
