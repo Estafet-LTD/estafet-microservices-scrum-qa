@@ -7,8 +7,9 @@ node('maven') {
 	}
 
 	stage("execute acceptance tests") {
-		sh "mvn clean install"
-		junit "**/target/surefire-reports/*.xml"	
+		withMaven ( maven: 'M3', mavenSettingsConfig: 'my-maven-settings', mavenLocalRepo: '.repository') {
+      		sh "mvn clean install"
+    	}
 	}
 
 }
