@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  creationTimestamp: null
+  labels:
+    app: pipeline
+    name: qa-project-api
+  name: qa-project-api
+spec:
+  output: {}
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
+  source:
+    git:
+      uri: "https://github.com/Estafet-LTD/estafet-microservices-scrum-qa"
+  strategy:
+    jenkinsPipelineStrategy:
+      jenkinsfilePath: release-pipeline.groovy
+    type: JenkinsPipeline
+status:
+  lastVersion: 0
