@@ -18,5 +18,12 @@ spec:
     jenkinsPipelineStrategy:
       jenkinsfilePath: release-pipeline.groovy
     type: JenkinsPipeline
+  triggers:
+  - github:
+      secret: secret101
+    type: GitHub
+  - generic:
+      secret: secret101
+    type: Generic    
 status:
   lastVersion: 0
