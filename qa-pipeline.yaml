@@ -4,8 +4,8 @@ metadata:
   creationTimestamp: null
   labels:
     app: pipeline
-    name: qa-project-api
-  name: qa-project-api
+    name: qa-pipeline
+  name: qa-pipeline
 spec:
   output: {}
   postCommit: {}
