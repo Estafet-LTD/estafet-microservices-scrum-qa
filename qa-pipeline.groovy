@@ -1,3 +1,6 @@
+node {
+}
+
 node('maven') {
 
 	def project = "test"
