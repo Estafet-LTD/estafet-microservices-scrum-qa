@@ -8,15 +8,34 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+	
 	<modules>
 		<module>estafet-microservices-scrum-qa-pageobjects</module>	
 		<module>estafet-microservices-scrum-qa-project</module>
 	</modules>
+	
    	<dependencies>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>2.53.1</version>
+		</dependency>   	
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 		</dependency>
 	</dependencies> 	
+
+	<distributionManagement>
+	   <snapshotRepository>
+	      <id>nexus-snapshots</id>
+	      <url>http://nexus.cicd.svc:8081/nexus/content/repositories/snapshots</url>
+	   </snapshotRepository>
+	</distributionManagement>
+		
 </project>
