@@ -9,6 +9,10 @@
 	</parent>
 	<artifactId>estafet-microservices-scrum-qa-pageobjects</artifactId>
 
+	<properties>
+		<java.version>1.8</java.version>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
