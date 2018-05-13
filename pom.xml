@@ -14,7 +14,7 @@
 	</properties>
 	
 	<modules>
-		<module>estafet-microservices-scrum-qa-pageobjects</module>	
+			
 		<module>estafet-microservices-scrum-qa-project</module>
 	</modules>
 	
