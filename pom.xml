@@ -7,7 +7,13 @@
 	<artifactId>estafet-microservices-scrum-qa</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
+	
+	<properties>
+		<java.version>1.8</java.version>
+	</properties>
+	
 	<modules>
+		<module>estafet-microservices-scrum-qa-pageobjects</module>	
 		<module>estafet-microservices-scrum-qa-project</module>
 	</modules>
    	<dependencies>
