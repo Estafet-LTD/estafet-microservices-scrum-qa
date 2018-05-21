@@ -13,7 +13,7 @@ node('maven') {
 								"STORY_API_JDBC_URL=jdbc:postgresql://postgresql.test.svc:5432/story-api", 
 								"STORY_API_DB_USER=postgres", 
 								"STORY_API_DB_PASSWORD=welcome1",
-								"STORY_API_SERVICE_URI=http://${microservice}.test.svc:8080",
+								"STORY_API_SERVICE_URI=http://story-api.test.svc:8080",
 								"SPRINT_BURNDOWN_JDBC_URL=jdbc:postgresql://postgresql.test.svc:5432/sprint-burndown", 
 								"SPRINT_BURNDOWN_DB_USER=postgres", 
 								"SPRINT_BURNDOWN_DB_PASSWORD=welcome1",
