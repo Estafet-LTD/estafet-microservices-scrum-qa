@@ -12,11 +12,5 @@ node('maven') {
 	    } 
 	}
 
-	stage("deploy snapshots") {
-		withMaven(mavenSettingsConfig: 'microservices-scrum') {
- 			sh "mvn clean deploy -Dmaven.test.skip=true"
-		} 
-	}
-
 }
 
