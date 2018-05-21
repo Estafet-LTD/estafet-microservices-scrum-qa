@@ -39,12 +39,12 @@
 		<dependency>
 			<groupId>estafet-microservices-scrum</groupId>
 			<artifactId>estafet-microservices-scrum-lib-data</artifactId>
-			<version>0.0.3</version>
+			<version>0.0.4</version>
 		</dependency>
 		<dependency>
 			<groupId>estafet-microservices-scrum</groupId>
 			<artifactId>estafet-microservices-scrum-lib-pageobjects</artifactId>
-			<version>0.0.2</version>
+			<version>0.0.4</version>
 		</dependency>
    	</dependencies> 	
 
