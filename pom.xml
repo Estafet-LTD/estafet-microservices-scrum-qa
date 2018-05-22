@@ -6,16 +6,12 @@
 	<groupId>estafet-microservices-scrum</groupId>
 	<artifactId>estafet-microservices-scrum-qa</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>pom</packaging>
 	
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 	
-	<modules>
-		<module>estafet-microservices-scrum-qa-project</module>
-	</modules>
 	
    	<dependencies>   
 		<dependency>

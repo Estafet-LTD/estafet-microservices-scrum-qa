@@ -5,3 +5,5 @@
 /*/.project
 /*/.classpath
 /qa-pipeline.groovy.bak
+/target/
+/.classpath
