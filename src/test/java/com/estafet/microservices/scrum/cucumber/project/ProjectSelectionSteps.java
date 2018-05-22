@@ -12,6 +12,8 @@ import com.estafet.microservices.scrum.lib.selenium.pages.ProjectPage;
 import com.estafet.microservices.scrum.lib.selenium.pages.ProjectListPage;
 
 import cucumber.api.DataTable;
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -22,9 +24,19 @@ public class ProjectSelectionSteps {
 	ProjectListPage projectListPage;
 	ProjectPage projectPage;
 	
+	@Before
+	public void before() {
+		DataCleanser.clean();
+		homePage = new HomePage();
+	}
+	
+	@After
+	public void after() {
+		homePage.close();
+	}
+	
 	@Given("^these projects have been created:$")
 	public void these_projects_have_been_created(DataTable dataTable) {
-		DataCleanser.clean();
 		List<List<String>> data = dataTable.raw();
 		for (int i=1; i<data.size(); i++) {
 			List<String> row = data.get(i);
@@ -34,7 +46,6 @@ public class ProjectSelectionSteps {
 				.setSprintLengthDays(Integer.parseInt(row.get(2)))
 				.build();
 		}
-		homePage = new HomePage();
 	}
 	
 	@When("^I navigate to the project list page$")
