@@ -67,6 +67,7 @@ Feature: Sprint Board
     And the current active sprint should be "Sprint#2" as viewed from the "My Project #3" page
     And "Sprint#1" should be in the completed sprints on the "My Project #3" page
     And the project burndown total for "Sprint#2" should be 33 points
+    And on the "My Project #3" page, the "create the ui" and "test the ui" have statuses of "Completed"
 
     Examples: Complete Tasks
       | task   | sprint burndown |
