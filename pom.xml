@@ -35,7 +35,7 @@
 		<dependency>
 			<groupId>estafet-microservices-scrum</groupId>
 			<artifactId>estafet-microservices-scrum-lib</artifactId>
-			<version>0.0.5-SNAPSHOT</version>
+			<version>0.0.5</version>
 			<scope>test</scope>
 		</dependency>
    	</dependencies> 	
