@@ -1,9 +1,9 @@
-package com.estafet.microservices.scrum.cucumber.story;
+package com.estafet.microservices.scrum.cucumber;
 
 import org.junit.runner.RunWith;
 import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
-public class StoryScenarios {
+public class SprintScenarios {
 
 }

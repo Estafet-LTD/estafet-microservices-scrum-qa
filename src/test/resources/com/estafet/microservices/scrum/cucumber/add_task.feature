@@ -1,6 +1,6 @@
 Feature: Add Task
-
-  Background: Base Project with stories
+      
+  Scenario Outline: Create a new task
     Given the following project has already been created for add task:
       | title                | number of sprints | length of sprint |
       | My Project #3        |                 3 |                5 |
@@ -9,9 +9,7 @@ Feature: Add Task
       | create the ui					| 13						|
       | test the ui						| 40						|
       | back end development	| 5							|
-      | database work					| 8							| 
-      
-  Scenario Outline: Create a new task
+      | database work					| 8							|   
     When I click Add Task from the story "test the ui" page 
     	And enter a title of <title> 
     	And initial hours of <initial hours>

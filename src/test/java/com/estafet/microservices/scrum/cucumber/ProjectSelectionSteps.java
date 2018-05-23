@@ -1,4 +1,4 @@
-package com.estafet.microservices.scrum.cucumber.project;
+package com.estafet.microservices.scrum.cucumber;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.core.Is.*;

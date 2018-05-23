@@ -34,13 +34,9 @@
 		</dependency>
 		<dependency>
 			<groupId>estafet-microservices-scrum</groupId>
-			<artifactId>estafet-microservices-scrum-lib-data</artifactId>
-			<version>0.0.4</version>
-		</dependency>
-		<dependency>
-			<groupId>estafet-microservices-scrum</groupId>
-			<artifactId>estafet-microservices-scrum-lib-pageobjects</artifactId>
-			<version>0.0.4</version>
+			<artifactId>estafet-microservices-scrum-lib</artifactId>
+			<version>0.0.5-SNAPSHOT</version>
+			<scope>test</scope>
 		</dependency>
    	</dependencies> 	
 
