@@ -1,7 +1,7 @@
 Feature: New Project
 
   Background: Multiple projects
-    Given these projects have already been created:
+    Given these projects have been created:
       | title                | number of sprints | length of sprint |
       | My Project #3        |                 3 |                5 |
       | The cucumber project |                 2 |                5 |
