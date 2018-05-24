@@ -20,10 +20,10 @@ Feature: New Project
     Then on the "A totally new project" project page, for there should be a link to a sprint called "Sprint #1"
     And the "Sprint #1" link should navigate me to an "Active" sprint called "Sprint #1"
 
-  Scenario: Review sprint burndown for new project
+  Scenario: Review project burndown for new project
     Then on the "A totally new project" there should be a link for Project Burndown that shows me the project burndown
     And the project burndown should consist of 4 sprints, each totalling 0 story point effort remaining
 
-  Scenario: Review project burndown for new project
+  Scenario: Review sprint burndown for new project
     Then on "A totally new project" there should be a link for Sprint Burndown that shows me the sprint burndown
     And the sprint burndown should contain 10 days
