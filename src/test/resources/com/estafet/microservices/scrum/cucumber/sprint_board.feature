@@ -1,3 +1,4 @@
+@sprint
 Feature: Sprint Board
 
   Background: Base Project with the following stories and tasks for the sprint board

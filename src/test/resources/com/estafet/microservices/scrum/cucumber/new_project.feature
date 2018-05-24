@@ -1,3 +1,4 @@
+@project
 Feature: New Project
 
   Background: Multiple projects

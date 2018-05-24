@@ -7,7 +7,6 @@ import java.util.List;
 
 import com.estafet.microservices.scrum.lib.data.ServiceDatabases;
 import com.estafet.microservices.scrum.lib.data.project.Project;
-import com.estafet.microservices.scrum.lib.data.project.ProjectBuilder;
 import com.estafet.microservices.scrum.lib.data.project.ProjectBurndown;
 import com.estafet.microservices.scrum.lib.data.project.ProjectBurndownSprint;
 import com.estafet.microservices.scrum.lib.data.sprint.Sprint;
@@ -23,7 +22,6 @@ import com.estafet.microservices.scrum.lib.selenium.pages.sprint.SprintBurndownP
 import com.estafet.microservices.scrum.lib.selenium.pages.sprint.SprintPage;
 
 import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
@@ -38,25 +36,20 @@ public class ProjectSteps {
 	ProjectBurndownPage projectBurndownPage;
 	SprintBurndownPage sprintBurndownPage;
 
-	@Before
+	@Before("@project")
 	public void before() {
 		ServiceDatabases.clean();
 		homePage = new HomePage();
 	}
 
-	@After
+	@After("@project")
 	public void after() {
 		homePage.close();
 	}
 
 	@Given("^these projects have been created:$")
 	public void these_projects_have_been_created(DataTable dataTable) {
-		List<List<String>> data = dataTable.raw();
-		for (int i = 1; i < data.size(); i++) {
-			List<String> row = data.get(i);
-			new ProjectBuilder().setTitle(row.get(0)).setNoSprints(Integer.parseInt(row.get(1)))
-					.setSprintLengthDays(Integer.parseInt(row.get(2))).build();
-		}
+		new ProjectDataTableBuilder().setDataTable(dataTable).build();
 	}
 
 	@When("^I navigate to the project list page$")
@@ -144,6 +137,7 @@ public class ProjectSteps {
 									.setNoSprints(Integer.parseInt(values.get(1)))
 									.setSprintLengthDays(Integer.parseInt(values.get(2)))
 									.clickSubmitButton();
+		Project.getProjectById(projectPage.getProjectId()).newProjectWait();
 	}
 
 	@Then("^I should be able to view the new project called \"([^\"]*)\" on the project page$")
@@ -170,6 +164,7 @@ public class ProjectSteps {
 
 	@Then("^the \"([^\"]*)\" link should navigate me to an \"([^\"]*)\" sprint called \"([^\"]*)\"$")
 	public void the_link_should_navigate_me_to_an_sprint_called(String sprintLinkText, String status, String sprint) throws Throwable {
+		assertTrue(projectPage.isLoaded());
 		SprintPage sprintPage = projectPage.clickActiveSprintLink();
 		assertTrue(sprintPage.isLoaded());
 		assertThat(sprintPage.getStatus(), is(status));
@@ -193,6 +188,7 @@ public class ProjectSteps {
 
 	@Then("^on \"([^\"]*)\" there should be a link for Sprint Burndown that shows me the sprint burndown$")
 	public void on_there_should_be_a_link_for_Sprint_Burndown_that_shows_me_the_sprint_burndown(String project) throws Throwable {
+		assertTrue(projectPage.isLoaded());
 	    sprintBurndownPage = projectPage.clickSprintBurndownLink();
 	    assertTrue(sprintBurndownPage.isLoaded());
 	}

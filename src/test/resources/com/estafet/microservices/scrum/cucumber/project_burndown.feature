@@ -1,3 +1,4 @@
+@project
 Feature: Project Burndown
 
   Scenario: Complete multiple sprints and review project burndown

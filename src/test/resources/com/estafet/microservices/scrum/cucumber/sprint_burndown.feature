@@ -1,3 +1,4 @@
+@sprint
 Feature: Sprint Burndown
 
   Scenario: Base Project with the following stories and tasks for the active sprint

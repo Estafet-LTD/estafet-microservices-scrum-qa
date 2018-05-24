@@ -1,3 +1,4 @@
+@project
 Feature: Project Selection
 
   Background: Multiple projects
