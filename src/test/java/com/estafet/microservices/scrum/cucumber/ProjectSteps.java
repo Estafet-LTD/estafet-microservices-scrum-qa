@@ -110,7 +110,6 @@ public class ProjectSteps {
 									.setNoSprints(Integer.parseInt(values.get(1)))
 									.setSprintLengthDays(Integer.parseInt(values.get(2)))
 									.clickSubmitButton();
-		Project.getProjectById(projectPage.getProjectId()).newProjectWait();
 	}
 
 	@Then("^I should be able to view the new project called \"([^\"]*)\" on the project page$")
@@ -132,6 +131,7 @@ public class ProjectSteps {
 
 	@Then("^on the \"([^\"]*)\" project page, for there should be a link to a sprint called \"([^\"]*)\"$")
 	public void on_the_project_page_for_there_should_be_a_link_to_a_sprint_called(String project, String sprint) throws Throwable {
+		assertTrue(projectPage.isLoaded());
 		assertThat(projectPage.getActiveSprintText(), is(sprint));
 	}
 
