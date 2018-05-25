@@ -9,10 +9,9 @@ import com.estafet.microservices.scrum.lib.data.ServiceDatabases;
 import com.estafet.microservices.scrum.lib.data.project.Project;
 import com.estafet.microservices.scrum.lib.data.project.ProjectBurndown;
 import com.estafet.microservices.scrum.lib.data.project.ProjectBurndownSprint;
+import com.estafet.microservices.scrum.lib.data.project.ProjectCompleteDataSetBuilder;
+import com.estafet.microservices.scrum.lib.data.project.ProjectDataSetBuilder;
 import com.estafet.microservices.scrum.lib.data.sprint.Sprint;
-import com.estafet.microservices.scrum.lib.data.story.Story;
-import com.estafet.microservices.scrum.lib.data.story.StoryBuilder;
-import com.estafet.microservices.scrum.lib.data.task.TaskBuilder;
 import com.estafet.microservices.scrum.lib.selenium.pages.home.HomePage;
 import com.estafet.microservices.scrum.lib.selenium.pages.project.NewProjectPage;
 import com.estafet.microservices.scrum.lib.selenium.pages.project.ProjectBurndownPage;
@@ -49,7 +48,7 @@ public class ProjectSteps {
 
 	@Given("^these projects have been created:$")
 	public void these_projects_have_been_created(DataTable dataTable) {
-		new ProjectDataTableBuilder().setDataTable(dataTable).build();
+		new ProjectDataSetBuilder().setData(dataTable.raw()).build();
 	}
 
 	@When("^I navigate to the project list page$")
@@ -82,33 +81,7 @@ public class ProjectSteps {
 	@Given("^has a backlog consisting of the following completed stories for each sprint of \"([^\"]*)\" project:$")
 	public void has_a_backlog_consisting_of_the_following_completed_stories_for_each_sprint_of_project(
 			String projectTitle, DataTable dataTable) throws Throwable {
-		List<List<String>> data = dataTable.raw();
-		Project project = Project.getProjectByTitle(projectTitle);
-		for (int i = 1; i < data.size(); i++) {
-			String storyTitle = data.get(i).get(0);
-			Integer storypoints = Integer.parseInt(data.get(i).get(1));
-			Story story = new StoryBuilder()
-							.setProjectId(project.getId())
-							.setTitle(storyTitle)
-							.setStorypoints(storypoints)
-							.build();
-			new TaskBuilder()
-				.setStoryId(story.getId())
-				.build();
-		}
-		String previousSprint = project.getActiveSprint().getName();
-		Sprint sprintObject = null;
-		for (int i = 1; i < data.size(); i++) {
-			String sprint = data.get(i).get(2);
-			String storyTitle = data.get(i).get(0);
-			if (!sprint.equals(previousSprint)) {
-				project.getSprint(previousSprint).complete();
-			}
-			sprintObject = project.getSprint(sprint);
-			project.getStory(storyTitle).addToSprint(sprintObject.getId());
-			previousSprint = sprint;
-		}
-		sprintObject.complete();
+		new ProjectCompleteDataSetBuilder().setProjectTitle(projectTitle).setData(dataTable.raw()).build();
 	}
 
 	@Then("^the corresponding project burndown for \"([^\"]*)\" will match the following:$")

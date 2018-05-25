@@ -6,14 +6,15 @@ import static org.hamcrest.core.Is.*;
 
 import com.estafet.microservices.scrum.lib.data.ServiceDatabases;
 import com.estafet.microservices.scrum.lib.data.project.Project;
+import com.estafet.microservices.scrum.lib.data.project.ProjectDataSetBuilder;
 import com.estafet.microservices.scrum.lib.data.sprint.Sprint;
+import com.estafet.microservices.scrum.lib.data.story.StoryDataSetBuilder;
 import com.estafet.microservices.scrum.lib.selenium.pages.home.HomePage;
 import com.estafet.microservices.scrum.lib.selenium.pages.project.ProjectListPage;
 import com.estafet.microservices.scrum.lib.selenium.pages.project.ProjectPage;
 import com.estafet.microservices.scrum.lib.selenium.pages.sprint.SprintPage;
 
 import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
@@ -39,7 +40,7 @@ public class SprintSteps {
 
 	@Given("^these projects have already been created for the sprint:$")
 	public void these_projects_have_already_been_created_for_the_sprint(DataTable dataTable) throws Throwable {
-		Project project = new ProjectDataTableBuilder().setDataTable(dataTable).build().get(0);
+		Project project = new ProjectDataSetBuilder().setData(dataTable.raw()).build().get(0);
 		ProjectListPage projectListPage = homePage.clickHereLink();
 		assertTrue(projectListPage.isLoaded());
 		projectPage = projectListPage.clickProjectLink(project.getTitle());
@@ -48,7 +49,7 @@ public class SprintSteps {
 
 	@Given("^has the following stories and tasks:$")
 	public void has_the_following_stories_and_tasks(DataTable dataTable) throws Throwable {
-		new StoryDataTableBuilder().setDataTable(dataTable).setProjectId(projectPage.getProjectId()).build();
+		new StoryDataSetBuilder().setData(dataTable.raw()).setProjectId(projectPage.getProjectId()).build();
 	}
 
 	@When("^on \"([^\"]*)\" sprint page, click the Add to Sprint lick for the available story create the ui$")
