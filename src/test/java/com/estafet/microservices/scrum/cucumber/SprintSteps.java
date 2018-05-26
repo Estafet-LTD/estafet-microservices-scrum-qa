@@ -2,6 +2,9 @@ package com.estafet.microservices.scrum.cucumber;
 
 import static org.junit.Assert.*;
 
+import java.util.Iterator;
+import java.util.List;
+
 import static org.hamcrest.core.Is.*;
 
 import com.estafet.microservices.scrum.lib.data.ServiceDatabases;
@@ -12,9 +15,12 @@ import com.estafet.microservices.scrum.lib.data.story.StoryDataSetBuilder;
 import com.estafet.microservices.scrum.lib.selenium.pages.home.HomePage;
 import com.estafet.microservices.scrum.lib.selenium.pages.project.ProjectListPage;
 import com.estafet.microservices.scrum.lib.selenium.pages.project.ProjectPage;
+import com.estafet.microservices.scrum.lib.selenium.pages.sprint.SprintBoardPage;
+import com.estafet.microservices.scrum.lib.selenium.pages.sprint.SprintBoardPageToDoTask;
 import com.estafet.microservices.scrum.lib.selenium.pages.sprint.SprintPage;
 
 import cucumber.api.DataTable;
+import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
@@ -26,6 +32,7 @@ public class SprintSteps {
 	HomePage homePage;
 	ProjectPage projectPage;
 	SprintPage sprintPage;
+	SprintBoardPage sprintBoardPage;
 
 	@Before("@sprint")
 	public void before() {
@@ -103,4 +110,47 @@ public class SprintSteps {
 		assertTrue(sprintPage.isSprintStory("database work"));
 	}
 	
+	@Given("^these projects have already been created for the sprint board:$")
+	public void these_projects_have_already_been_created_for_the_sprint_board(DataTable dataTable) throws Throwable {
+	    Project project = new ProjectDataSetBuilder().setData(dataTable.raw()).build().get(0);
+	    projectPage = homePage.clickHereLink().clickProjectLink(project.getTitle());
+	    assertTrue(projectPage.isLoaded());
+	}
+
+	@Given("^the project burndown for \"([^\"]*)\" is (\\d+) points$")
+	public void the_project_burndown_for_is_points(String project, int points) throws Throwable {
+	    assertThat(Project.getProjectByTitle(project).getBurndown().getSprints().get(0).getPointsTotal(), is(points));
+	}
+
+	@Given("^add the following stories to \"([^\"]*)\":$")
+	public void add_the_following_stories_to(String sprint, DataTable dataTable) throws Throwable {
+		sprintPage = projectPage.clickActiveSprintLink();
+		assertTrue(sprintPage.isLoaded());
+		for (List<String> row : dataTable.raw()) {
+			sprintPage = sprintPage.clickAddToSprint(row.get(0));
+			assertTrue(sprintPage.isLoaded());
+		}
+	}
+	
+	@When("^on the sprint board \"([^\"]*)\" page$")
+	public void on_the_sprint_board_page(String sprint) throws Throwable {
+		sprintBoardPage = sprintPage.clickSprintBoardLink();
+		assertTrue(sprintBoardPage.isLoaded());
+	}
+
+	@Then("^the following tasks are in the todo column:$")
+	public void the_following_tasks_are_in_the_todo_column(DataTable dataTable) throws Throwable {
+		List<List<String>> data = dataTable.raw();
+		List<SprintBoardPageToDoTask> todos = sprintBoardPage.getTodoTasks();
+		Iterator<SprintBoardPageToDoTask> iter = todos.iterator();
+		for (int i=1; i < data.size(); i++) {
+			List<String> row = data.get(i);
+			String task = row.get(0);
+			String story = row.get(1);
+			SprintBoardPageToDoTask todo = iter.next();
+			assertThat(todo.getTaskTitle(), is(task));
+			assertThat(todo.getStoryTitle(), is(story));
+		}
+	}
+
 }

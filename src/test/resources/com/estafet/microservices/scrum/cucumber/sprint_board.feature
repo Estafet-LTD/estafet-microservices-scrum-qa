@@ -6,13 +6,16 @@ Feature: Sprint Board
       | title         | number of sprints | length of sprint |
       | My Project #3 |                 3 |                5 |
     And has the following stories and tasks:
-    And the project burndown for "Sprint#1" is 86 points
-      | story                | story points | tasks               | sprint   |
-      | create the ui        |           13 | Task#1:5, Task#2:10 | Sprint#1 |
-      | test the ui          |           40 | Task#3:5            | Sprint#1 |
-      | back end development |            5 | Task#4:8, Task#5:13 |          |
-      | database work        |            8 | Task#6:3            |          |
-      | my work              |           20 | Task#7:12           |          |
+      | story                | story points | tasks                               |
+      | create the ui        |           13 | Task#1 [5 hours], Task#2 [10 hours] |
+      | test the ui          |           40 | Task#3 [5 hours]                    |
+      | back end development |            5 | Task#4 [8 hours], Task#5 [13 hours] |
+      | database work        |            8 | Task#6 [3 hours]                    |
+      | my work              |           20 | Task#7 [12 hours]                   |
+    And the project burndown for "My Project #3" is 86 points
+    And add the following stories to "Sprint#1":
+      | create the ui |
+      | test the ui   |
 
   Scenario: Review Initial Sprint
     When on the sprint board "Sprint #1" page
@@ -25,37 +28,36 @@ Feature: Sprint Board
   Scenario Outline: Claim Todo Tasks
     When on the sprint board "Sprint #1" page
     And <claim> click the claim for task <task>
-    Then verify that its status is <status> on the "Sprint#1" page
+    Then verify that <task> is in the In Progress column
 
     Examples: Claim Tasks
-      | task   | claim | status      |
-      | Task#1 | yes   | In Progress |
-      | Task#2 | no    | Not Started |
-      | Task#3 | yes   | In Progress |
+      | task   |
+      | Task#1 |
+      | Task#3 |
 
   Scenario Outline: Complete Some Tasks
     When on the sprint board "Sprint #1" page
     And click the claim for task <task>
     And <complete> click complete for task <task>
-    Then verify that its status is <status> on the "Sprint#1" page
+    Then verify that <task> is in the Completed column
     And the sprint burndown total for "Sprint#1" should be <sprint burndown>
 
     Examples: Complete Tasks
-      | task   | complete | status      | sprint burndown |
-      | Task#1 | yes      | Completed   |              15 |
-      | Task#2 | no       | In Progress |              15 |
-      | Task#3 | yes      | Completed   |              10 |
+      | task   | sprint burndown |
+      | Task#1 |              15 |
+      | Task#2 |              15 |
+      | Task#3 |              10 |
 
   Scenario Outline: Update Task Hours
     When on the sprint board "Sprint #1" page
     And click the claim for task <task>
     And click update hours link for task <task>
     And enter <update hours>
-    Then verify that its status is <status> on the "Sprint#1" page
-    And the sprint burndown total for "Sprint#1" should be <sprint burndown>
+    Then verify that <task> is in the <column> column
+    And the sprint burndown total for should be <sprint burndown>
 
     Examples: Update Task Hours
-      | task   | sprint burndown | status      | update hours |
+      | task   | sprint burndown | column      | update hours |
       | Task#1 |              15 | Completed   |            0 |
       | Task#2 |               7 | In Progress |            2 |
       | Task#3 |               3 | In Progress |            1 |
