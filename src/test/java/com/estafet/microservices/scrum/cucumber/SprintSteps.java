@@ -22,7 +22,6 @@ import com.estafet.microservices.scrum.lib.selenium.pages.task.UpdateTaskHoursPa
 import com.estafet.microservices.scrum.lib.util.WaitUntil;
 
 import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
@@ -216,12 +215,12 @@ public class SprintSteps {
 			public boolean success() {
 				return Project.getProjectById(sprintBoardPage.getProjectId()).getSprints().size() == 2;
 			}
-		};
+		}.start();
 	}
 
 	@When("^\"([^\"]*)\" should be in the completed sprints on the \"([^\"]*)\" page$")
 	public void should_be_in_the_completed_sprints_on_the_page(String sprint, String project) throws Throwable {
-	    assertThat(projectPage.getCompletedSprints().get(0), is(sprint));
+	    assertThat(projectPage.getCompletedSprints().get(0), is("Sprint " + sprint));
 	}
 	
 	@Then("^the project burndown total for Sprint# (\\d+) should be (\\d+) points$")
