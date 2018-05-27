@@ -7,8 +7,7 @@ import java.util.List;
 
 import static org.hamcrest.core.Is.*;
 
-import com.estafet.microservices.scrum.lib.data.PollingEventValidator;
-import com.estafet.microservices.scrum.lib.data.ServiceDatabases;
+import com.estafet.microservices.scrum.lib.data.db.ServiceDatabases;
 import com.estafet.microservices.scrum.lib.data.project.Project;
 import com.estafet.microservices.scrum.lib.data.project.ProjectDataSetBuilder;
 import com.estafet.microservices.scrum.lib.data.sprint.Sprint;
@@ -20,6 +19,7 @@ import com.estafet.microservices.scrum.lib.selenium.pages.sprint.SprintBoardPage
 import com.estafet.microservices.scrum.lib.selenium.pages.sprint.SprintBoardPageToDoTask;
 import com.estafet.microservices.scrum.lib.selenium.pages.sprint.SprintPage;
 import com.estafet.microservices.scrum.lib.selenium.pages.task.UpdateTaskHoursPage;
+import com.estafet.microservices.scrum.lib.util.WaitUntil;
 
 import cucumber.api.DataTable;
 import cucumber.api.PendingException;
@@ -212,7 +212,7 @@ public class SprintSteps {
 	}
 
 	private void waitForTwoSprints() {
-		new PollingEventValidator() {
+		new WaitUntil() {
 			public boolean success() {
 				return Project.getProjectById(sprintBoardPage.getProjectId()).getSprints().size() == 2;
 			}

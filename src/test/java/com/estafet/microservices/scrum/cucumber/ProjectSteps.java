@@ -5,7 +5,7 @@ import static org.hamcrest.core.Is.*;
 
 import java.util.List;
 
-import com.estafet.microservices.scrum.lib.data.ServiceDatabases;
+import com.estafet.microservices.scrum.lib.data.db.ServiceDatabases;
 import com.estafet.microservices.scrum.lib.data.project.Project;
 import com.estafet.microservices.scrum.lib.data.project.ProjectBurndown;
 import com.estafet.microservices.scrum.lib.data.project.ProjectBurndownSprint;
