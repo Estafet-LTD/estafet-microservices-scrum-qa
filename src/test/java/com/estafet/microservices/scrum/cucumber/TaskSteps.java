@@ -17,7 +17,6 @@ import com.estafet.microservices.scrum.lib.selenium.pages.story.StoryPage;
 import com.estafet.microservices.scrum.lib.selenium.pages.task.AddTaskPage;
 
 import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;

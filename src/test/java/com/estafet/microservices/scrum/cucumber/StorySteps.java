@@ -3,22 +3,14 @@ package com.estafet.microservices.scrum.cucumber;
 import static org.junit.Assert.*;
 import static org.hamcrest.core.Is.*;
 
-import java.util.List;
-
 import com.estafet.microservices.scrum.lib.data.db.ServiceDatabases;
-import com.estafet.microservices.scrum.lib.data.project.Project;
-import com.estafet.microservices.scrum.lib.data.project.ProjectCompleteDataSetBuilder;
 import com.estafet.microservices.scrum.lib.data.project.ProjectDataSetBuilder;
-import com.estafet.microservices.scrum.lib.data.story.StoryBuilder;
 import com.estafet.microservices.scrum.lib.selenium.pages.home.HomePage;
-import com.estafet.microservices.scrum.lib.selenium.pages.project.ProjectListPage;
 import com.estafet.microservices.scrum.lib.selenium.pages.project.ProjectPage;
 import com.estafet.microservices.scrum.lib.selenium.pages.story.AddStoryPage;
 import com.estafet.microservices.scrum.lib.selenium.pages.story.StoryPage;
-import com.estafet.microservices.scrum.lib.selenium.pages.task.AddTaskPage;
 
 import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
