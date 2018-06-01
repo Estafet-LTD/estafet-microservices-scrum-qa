@@ -1,12 +1,12 @@
 package com.estafet.microservices.scrum.cucumber;
 
 import static org.junit.Assert.*;
+import static org.hamcrest.core.Is.*;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static org.hamcrest.core.Is.*;
-
+import com.estafet.microservices.scrum.lib.commons.wait.WaitUntil;
 import com.estafet.microservices.scrum.lib.data.db.ServiceDatabases;
 import com.estafet.microservices.scrum.lib.data.project.Project;
 import com.estafet.microservices.scrum.lib.data.project.ProjectDataSetBuilder;
@@ -19,7 +19,6 @@ import com.estafet.microservices.scrum.lib.selenium.pages.sprint.SprintBoardPage
 import com.estafet.microservices.scrum.lib.selenium.pages.sprint.SprintBoardPageToDoTask;
 import com.estafet.microservices.scrum.lib.selenium.pages.sprint.SprintPage;
 import com.estafet.microservices.scrum.lib.selenium.pages.task.UpdateTaskHoursPage;
-import com.estafet.microservices.scrum.lib.util.WaitUntil;
 
 import cucumber.api.DataTable;
 import cucumber.api.java.After;
