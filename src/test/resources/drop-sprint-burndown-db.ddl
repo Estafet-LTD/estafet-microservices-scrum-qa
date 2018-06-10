@@ -1,0 +1,12 @@
+alter table SPRINT_DAY drop constraint SPRINT_DAY_TO_SPRINT_FK;
+alter table STORY drop constraint STORY_TO_SPRINT_FK;
+alter table TASK drop constraint TASK_TO_STORY_FK;
+alter table TASK_UPDATE drop constraint TASK_UPDATE_TO_SPRINT_DAY_FK;
+drop table if exists MESSAGE_EVENT cascade;
+drop table if exists SPRINT cascade;
+drop table if exists SPRINT_DAY cascade;
+drop table if exists STORY cascade;
+drop table if exists TASK cascade;
+drop table if exists TASK_UPDATE cascade;
+drop sequence SPRINT_DAY_ID_SEQ;
+drop sequence TASK_UPDATE_ID_SEQ;

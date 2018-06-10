@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services>
+	<service>
+		<name>project-api</name>
+		<db-url-env>PROJECT_API_JDBC_URL</db-url-env>
+		<db-user-env>PROJECT_API_DB_USER</db-user-env>
+		<db-password-env>PROJECT_API_DB_PASSWORD</db-password-env>
+	</service>
+	<service>
+		<name>project-burndown</name>
+		<db-url-env>PROJECT_BURNDOWN_REPOSITORY_JDBC_URL</db-url-env>
+		<db-user-env>PROJECT_BURNDOWN_REPOSITORY_DB_USER</db-user-env>
+		<db-password-env>PROJECT_BURNDOWN_REPOSITORY_DB_PASSWORD</db-password-env>
+	</service>	
+	<service>
+		<name>sprint-api</name>
+		<db-url-env>SPRINT_API_JDBC_URL</db-url-env>
+		<db-user-env>SPRINT_API_DB_USER</db-user-env>
+		<db-password-env>SPRINT_API_DB_PASSWORD</db-password-env>
+	</service>	
+	<service>
+		<name>sprint-burndown</name>
+		<db-url-env>SPRINT_BURNDOWN_JDBC_URL</db-url-env>
+		<db-user-env>SPRINT_BURNDOWN_DB_USER</db-user-env>
+		<db-password-env>SPRINT_BURNDOWN_DB_PASSWORD</db-password-env>
+	</service>	
+	<service>
+		<name>story-api</name>
+		<db-url-env>STORY_API_JDBC_URL</db-url-env>
+		<db-user-env>STORY_API_DB_USER</db-user-env>
+		<db-password-env>STORY_API_DB_PASSWORD</db-password-env>
+	</service>		
+	<service>
+		<name>task-api</name>
+		<db-url-env>TASK_API_JDBC_URL</db-url-env>
+		<db-user-env>TASK_API_DB_USER</db-user-env>
+		<db-password-env>TASK_API_DB_PASSWORD</db-password-env>
+	</service>	
+</services>
