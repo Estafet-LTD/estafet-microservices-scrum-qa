@@ -1,0 +1,1 @@
+oc port-forward `oc get pods --selector application=broker | sed -n 2p | cut -d' ' -f1` 61616:61616
