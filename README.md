@@ -121,7 +121,7 @@ The tests can now be executed either via a development IDE (e.g. Eclipse) or fro
 #### Executing via Eclipse
 Within the QA project  src/test/java > Run As > Junit Test
 
-![alt tag](https://github.com/Estafet-LTD/estafet-microservices-scrum/blob/master/ExecutingCucumberTestsOnWindows.png | width=200)
+![alt tag](https://github.com/Estafet-LTD/estafet-microservices-scrum/blob/master/ExecutingCucumberTestsOnWindows.png)
 
 The results should appear as
 
