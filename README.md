@@ -1,4 +1,4 @@
-# estafet-microservices-scrum-qa
+# Estafet Microservices Scrum QA Functional Tests
 This project contains the cucumber acceptance tests for the microservices scrum application. These are tests that focus on verifying the business functionality and therefore my "cut accross" multiple microservices
 
 ## Test Environment Setup
