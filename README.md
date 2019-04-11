@@ -72,34 +72,34 @@ Below are the environment variables and their corresponding values that are requ
 
 ```
 export OPENSHIFT_HOST=192.168.99.100
-export BASIC_UI_URI=http://basic-ui-test-microservices-scrum.%OPENSHIFT_HOST%.nip.io
+export BASIC_UI_URI=http://basic-ui-test-microservices-scrum.$OPENSHIFT_HOST.nip.io
 export JBOSS_A_MQ_BROKER_PASSWORD=amq
 export JBOSS_A_MQ_BROKER_URL=tcp://localhost:61616
 export JBOSS_A_MQ_BROKER_USER=amq
 export PROJECT_API_DB_PASSWORD=welcome1
 export PROJECT_API_DB_USER=postgres
 export PROJECT_API_JDBC_URL=jdbc:postgresql://localhost:5432/project-api
-export PROJECT_API_SERVICE_URI=http://project-api-test-microservices-scrum.%OPENSHIFT_HOST%.nip.io|
+export PROJECT_API_SERVICE_URI=http://project-api-test-microservices-scrum.$OPENSHIFT_HOST.nip.io
 export PROJECT_BURNDOWN_REPOSITORY_DB_PASSWORD=welcome1
 export PROJECT_BURNDOWN_REPOSITORY_DB_USER= postgres
 export PROJECT_BURNDOWN_REPOSITORY_JDBC_URL=jdbc:postgresql://localhost:5432/project-burndown
-export PROJECT_BURNDOWN_SERVICE_URI=http://project-burndown-test-microservices-scrum.%OPENSHIFT_HOST%.nip.io
+export PROJECT_BURNDOWN_SERVICE_URI=http://project-burndown-test-microservices-scrum.$OPENSHIFT_HOST.nip.io
 export SPRINT_API_DB_PASSWORD=welcome1
 export SPRINT_API_DB_USER=postgres
 export SPRINT_API_JDBC_URL=jdbc:postgresql://localhost:5432/sprint-api
-export SPRINT_API_SERVICE_URI=http://sprint-api-test-microservices-scrum.%OPENSHIFT_HOST%.nip.io
+export SPRINT_API_SERVICE_URI=http://sprint-api-test-microservices-scrum.$OPENSHIFT_HOST.nip.io
 export SPRINT_BURNDOWN_DB_PASSWORD=welcome1
 export SPRINT_BURNDOWN_DB_USER=postgres
 export SPRINT_BURNDOWN_JDBC_URL=jdbc:postgresql://localhost:5432/sprint-burndown
-export SPRINT_BURNDOWN_SERVICE_URI=http://sprint-burndown-test-microservices-scrum.%OPENSHIFT_HOST%.nip.io
+export SPRINT_BURNDOWN_SERVICE_URI=http://sprint-burndown-test-microservices-scrum.$OPENSHIFT_HOST.nip.io
 export STORY_API_DB_PASSWORD=welcome1
 export STORY_API_DB_USER=postgres
 export STORY_API_JDBC_URL=jdbc:postgresql://localhost:5432/story-api
-export STORY_API_SERVICE_URI=http://story-api-test-microservices-scrum.%OPENSHIFT_HOST%.nip.io
+export STORY_API_SERVICE_URI=http://story-api-test-microservices-scrum.$OPENSHIFT_HOST.nip.io
 export TASK_API_DB_PASSWORD=welcome1
 export TASK_API_DB_USER=postgres
 export TASK_API_JDBC_URL=jdbc:postgresql://localhost:5432/task-api
-export TASK_API_SERVICE_URI=http://task-api-test-microservices-scrum.%OPENSHIFT_HOST%.nip.io
+export TASK_API_SERVICE_URI=http://task-api-test-microservices-scrum.$OPENSHIFT_HOST.nip.io
 ```
 
 #### Step #5
