@@ -37,7 +37,7 @@ node('maven') {
 	}
 
 	stage('Generate HTML report') {
-        cucumber buildStatus: 'UNSTABLE', fileIncludePattern: '**/target/cucumber-report.json',  trendsLimit: 10
+        cucumber fileIncludePattern: '**/cucumber-report.json',  trendsLimit: 10
     }
 
 }
