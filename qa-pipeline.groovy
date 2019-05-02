@@ -36,5 +36,9 @@ node('maven') {
 		}
 	}
 
+	stage('Generate HTML report') {
+        cucumber buildStatus: 'UNSTABLE', fileIncludePattern: '**/target/cucumber-report.json',  trendsLimit: 10
+    }
+
 }
 
