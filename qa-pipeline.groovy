@@ -31,14 +31,13 @@ node('maven') {
 								"PROJECT_API_DB_PASSWORD=welcome1",
 								"PROJECT_API_SERVICE_URI=http://project-api.test.svc:8080" ]) {
 			withMaven(mavenSettingsConfig: 'microservices-scrum') {
-		  	sh "mvn clean test"
+				try {
+					sh "mvn clean test"	
+				} finally {
+					cucumber buildStatus: 'UNSTABLE', fileIncludePattern: '**/*cucumber-report.json',  trendsLimit: 10
+				}
 		  } 
 		}
 	}
-
-	stage('Generate HTML report') {
-        cucumber fileIncludePattern: '**/cucumber-report.json',  trendsLimit: 10
-    }
-
 }
 
