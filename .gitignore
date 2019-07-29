@@ -1,3 +1,6 @@
 /*/target
 /qa-pipeline.groovy.bak
 /target/
+.project
+.classpath
+.settings/
