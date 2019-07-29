@@ -1,9 +1,3 @@
-/.project
-/.settings
-/*/.settings
 /*/target
-/*/.project
-/*/.classpath
 /qa-pipeline.groovy.bak
 /target/
-/.classpath
