@@ -1,7 +1,14 @@
 node('maven') {
 
+	properties([
+	  parameters([
+	     string(name: 'GITHUB'),
+	  ])
+	])
+
+
 	stage("checkout") {
-		git branch: "master", url: "https://github.com/Estafet-LTD/estafet-microservices-scrum-qa"
+		git branch: "master", url: "https://github.com/${params.GITHUB}/estafet-microservices-scrum-qa"
 	}
 
 	stage("unit tests") {
