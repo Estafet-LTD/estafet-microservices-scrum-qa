@@ -150,15 +150,6 @@ public class ProjectSteps {
 	    assertTrue(projectBurndownPage.isLoaded());
 	}
 
-	@Then("^the project burndown should consist of (\\d+) sprints, each totalling (\\d+) story point effort remaining$")
-	public void the_project_burndown_should_consist_of_sprints_each_totalling_story_point_effort_remaining(int noSprints, int pointsTotal) throws Throwable {
-		ProjectBurndown projectBurndown = Project.getProjectById(projectBurndownPage.getProjectId()).getBurndown();
-		assertThat(projectBurndown.getSprints().size()-1, is(noSprints));	
-		for (ProjectBurndownSprint sprint : projectBurndown.getSprints()) {
-			assertThat(sprint.getPointsTotal(), is(pointsTotal));	
-		}
-	}
-
 	@Then("^on \"([^\"]*)\" there should be a link for Sprint Burndown that shows me the sprint burndown$")
 	public void on_there_should_be_a_link_for_Sprint_Burndown_that_shows_me_the_sprint_burndown(String project) throws Throwable {
 		assertTrue(projectPage.isLoaded());
