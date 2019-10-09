@@ -78,12 +78,6 @@ public class ProjectSteps {
 		assertThat(projectPage.getProjectTitle(), is(project));
 	}
 
-	@Given("^has a backlog consisting of the following completed stories for each sprint of \"([^\"]*)\" project:$")
-	public void has_a_backlog_consisting_of_the_following_completed_stories_for_each_sprint_of_project(
-			String projectTitle, DataTable dataTable) throws Throwable {
-		new ProjectCompleteDataSetBuilder().setProjectTitle(projectTitle).setData(dataTable.raw()).build();
-	}
-
 	@Then("^the corresponding project burndown for \"([^\"]*)\" will match the following:$")
 	public void the_corresponding_project_burndown_for_will_match_the_following(String project, DataTable dataTable)
 			throws Throwable {
