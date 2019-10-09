@@ -78,12 +78,6 @@ public class ProjectSteps {
 		assertThat(projectPage.getProjectTitle(), is(project));
 	}
 
-	@Given("^has a backlog consisting of the following completed stories for each sprint of \"([^\"]*)\" project:$")
-	public void has_a_backlog_consisting_of_the_following_completed_stories_for_each_sprint_of_project(
-			String projectTitle, DataTable dataTable) throws Throwable {
-		new ProjectCompleteDataSetBuilder().setProjectTitle(projectTitle).setData(dataTable.raw()).build();
-	}
-
 	@Then("^the corresponding project burndown for \"([^\"]*)\" will match the following:$")
 	public void the_corresponding_project_burndown_for_will_match_the_following(String project, DataTable dataTable)
 			throws Throwable {
@@ -148,15 +142,6 @@ public class ProjectSteps {
 	public void on_the_there_should_be_a_link_for_Project_Burndown_that_shows_me_the_project_burndown(String project) throws Throwable {
 	    projectBurndownPage = projectPage.clickProjectBurndownLink();
 	    assertTrue(projectBurndownPage.isLoaded());
-	}
-
-	@Then("^the project burndown should consist of (\\d+) sprints, each totalling (\\d+) story point effort remaining$")
-	public void the_project_burndown_should_consist_of_sprints_each_totalling_story_point_effort_remaining(int noSprints, int pointsTotal) throws Throwable {
-		ProjectBurndown projectBurndown = Project.getProjectById(projectBurndownPage.getProjectId()).getBurndown();
-		assertThat(projectBurndown.getSprints().size()-1, is(noSprints));	
-		for (ProjectBurndownSprint sprint : projectBurndown.getSprints()) {
-			assertThat(sprint.getPointsTotal(), is(pointsTotal));	
-		}
 	}
 
 	@Then("^on \"([^\"]*)\" there should be a link for Sprint Burndown that shows me the sprint burndown$")
