@@ -11,6 +11,8 @@ Feature: Sprint
       | test the ui          |           40 | Task#3 [5 hours]                    |
       | back end development |            5 | Task#4 [8 hours], Task#5 [13 hours] |
       | database work        |            8 | Task#6 [3 hours]                    |
+      
+      #added comment
 
   Scenario Outline: Add Story to Sprint
     When on "Sprint #1" sprint page, click the Add to Sprint lick for the available story <story>
