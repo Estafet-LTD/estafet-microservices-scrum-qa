@@ -12,8 +12,6 @@ Feature: Sprint
       | back end development |            5 | Task#4 [8 hours], Task#5 [13 hours] |
       | database work        |            8 | Task#6 [3 hours]                    |
       
-      #added comment
-
   Scenario Outline: Add Story to Sprint
     When on "Sprint #1" sprint page, click the Add to Sprint lick for the available story <story>
     Then story <story> will move into the sprint stories section
