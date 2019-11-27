@@ -22,9 +22,7 @@ Feature: Add Task
       | story                | story status | title      | initial hours | remaining hours |
       | create the ui        | Planning     | My Task #1 |            13 |              13 |
       | back end development | Planning     | My Task #2 |             5 |               5 |
-      | back end development | Planning     | My Task #4 |             8 |               8 |
       
-
   Scenario: Add Task to Closed Story
     Given the following project has already been created for add task:
       | title         | number of sprints | length of sprint |
