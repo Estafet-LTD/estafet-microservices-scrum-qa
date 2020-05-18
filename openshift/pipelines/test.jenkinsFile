@@ -9,7 +9,7 @@ node('maven') {
 	def project = "${params.PRODUCT}-test"
 
 	stage("checkout") {
-		git branch: "master", url: "https://github.com/${params.GITHUB}/${params.REPO}"
+		git credentialsId: 'git', branch: "master", url: "https://github.com/${params.GITHUB}/${params.REPO}"
 	}
 
 	stage("reset test flags for ${project}") {
@@ -17,7 +17,7 @@ node('maven') {
 	}
 
 	stage("cucumber tests") {
-		withMaven(mavenSettingsConfig: 'microservices-scrum') {
+		withMaven(mavenSettingsConfig: 'maven') {
 			try {
 				sh "mvn clean test"	
 			} finally {
