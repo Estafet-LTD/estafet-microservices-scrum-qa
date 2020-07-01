@@ -1,9 +1,12 @@
 package com.estafet.microservices.scrum.cucumber;
 
-import static org.junit.Assert.*;
-import static org.hamcrest.core.Is.*;
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.estafet.microservices.scrum.lib.data.db.ServiceDatabases;
 import com.estafet.microservices.scrum.lib.data.project.Project;
@@ -39,28 +42,28 @@ public class TaskSteps {
 
 	@After("@task")
 	public void after() {
-		homePage.close();
+	    Optional.ofNullable(homePage).ifPresent(pageToClose -> pageToClose.close());
 	}
 
 	@Given("^the following project has already been created for add task:$")
-	public void the_following_project_has_already_been_created_for_add_task(DataTable dataTable) throws Throwable {
+	public void the_following_project_has_already_been_created_for_add_task(final DataTable dataTable) throws Throwable {
 		new ProjectDataSetBuilder().setData(dataTable.raw()).build().get(0);
 	}
 
 	@Given("^\"([^\"]*)\" has the following stories:$")
-	public void has_the_following_stories(String project, DataTable dataTable) throws Throwable {
-		List<List<String>> data = dataTable.raw();
+	public void has_the_following_stories(final String project, final DataTable dataTable) throws Throwable {
+		final List<List<String>> data = dataTable.raw();
 		for (int i=1; i < data.size(); i++) {
-			List<String> row = data.get(i);
-			String title = row.get(0);
-			Integer storyPoints = Integer.parseInt(row.get(1));
+			final List<String> row = data.get(i);
+			final String title = row.get(0);
+			final Integer storyPoints = Integer.parseInt(row.get(1));
 			new StoryBuilder()
 				.setTitle(title)
 				.setStorypoints(storyPoints)
 				.setProjectId(Project.getProjectByTitle(project).getId())
 				.build();
 		}
-		ProjectListPage projectListPage = homePage.clickHereLink();
+		final ProjectListPage projectListPage = homePage.clickHereLink();
 		assertTrue(projectListPage.isLoaded());
 		projectPage = projectListPage.clickProjectLink(project);
 		assertTrue(projectPage.isLoaded());
@@ -75,12 +78,12 @@ public class TaskSteps {
 	}
 
 	@When("^enter a title of My Task #(\\d+)$")
-	public void enter_a_title_of_My_Task(int taskNo) throws Throwable {
+	public void enter_a_title_of_My_Task(final int taskNo) throws Throwable {
 		addTaskPage.setTitle("My Task #" + taskNo);
 	}
 
 	@When("^estimate of (\\d+)$")
-	public void estimate_of(int estimate) throws Throwable {
+	public void estimate_of(final int estimate) throws Throwable {
 		addTaskPage.setEstimate(estimate);
 	}
 
@@ -91,18 +94,18 @@ public class TaskSteps {
 	}
 
 	@Then("^I should be able to see the task My Task #(\\d+) added to the create the ui page$")
-	public void i_should_be_able_to_see_the_task_My_Task_added_to_the_create_the_ui_page(int arg1) throws Throwable {		
+	public void i_should_be_able_to_see_the_task_My_Task_added_to_the_create_the_ui_page(final int arg1) throws Throwable {
 		task = "My Task #" + arg1;
 		assertTrue(storyPage.getTasks().contains(task));
 	}
 
 	@Then("^with initial hours (\\d+)$")
-	public void with_initial_hours(int arg1) throws Throwable {
+	public void with_initial_hours(final int arg1) throws Throwable {
 		assertThat(storyPage.getTaskInitialHours(task), is(arg1));
 	}
 
 	@Then("^with remaining hours (\\d+)$")
-	public void with_remaining_hours(int arg1) throws Throwable {
+	public void with_remaining_hours(final int arg1) throws Throwable {
 		assertThat(storyPage.getTaskRemainingHours(task), is(arg1));
 	}
 
@@ -120,7 +123,7 @@ public class TaskSteps {
 	}
 
 	@Then("^I should be able to see the task My Task #(\\d+) added to the back end development page$")
-	public void i_should_be_able_to_see_the_task_My_Task_added_to_the_back_end_development_page(int arg1)
+	public void i_should_be_able_to_see_the_task_My_Task_added_to_the_back_end_development_page(final int arg1)
 			throws Throwable {
 		task = "My Task #" + arg1;
 		assertTrue(storyPage.getTasks().contains(task));
@@ -132,16 +135,16 @@ public class TaskSteps {
 	}
 
 	@Given("^has a backlog consisting of the following completed stories:$")
-	public void has_a_backlog_consisting_of_the_following_completed_stories(DataTable arg1) throws Throwable {
+	public void has_a_backlog_consisting_of_the_following_completed_stories(final DataTable arg1) throws Throwable {
 		new ProjectCompleteDataSetBuilder().setData(arg1.raw()).setProjectTitle("My Project #3").build();
-		ProjectListPage projectListPage = homePage.clickHereLink();
+		final ProjectListPage projectListPage = homePage.clickHereLink();
 		assertTrue(projectListPage.isLoaded());
 		projectPage = projectListPage.clickProjectLink("My Project #3");
 		assertTrue(projectPage.isLoaded());
 	}
 
 	@When("^I attempt to add a task \"([^\"]*)\" to story \"([^\"]*)\"$")
-	public void i_attempt_to_add_a_task_to_story(String task, String story) throws Throwable {
+	public void i_attempt_to_add_a_task_to_story(final String task, final String story) throws Throwable {
 		storyPage = projectPage.clickStoryLink(story);
 		assertTrue(storyPage.isLoaded());
 		addTaskPage = storyPage.clickAddTaskLink();
@@ -151,12 +154,12 @@ public class TaskSteps {
 	}
 
 	@Then("^the \"([^\"]*)\" will be displayed$")
-	public void the_will_be_displayed(String arg1) throws Throwable {
+	public void the_will_be_displayed(final String arg1) throws Throwable {
 		assertFalse(storyPage.isLoaded());
 	}
 
 	@Then("^the task \"([^\"]*)\" will not be created$")
-	public void the_task_will_not_be_created(String arg1) throws Throwable {
+	public void the_task_will_not_be_created(final String arg1) throws Throwable {
 		homePage = homePage.restart();
 		projectPage = homePage.clickHereLink().clickProjectLink("My Project #3");
 		assertTrue(projectPage.isLoaded());
